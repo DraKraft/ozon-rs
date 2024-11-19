@@ -1,0 +1,29 @@
+import { Button, HorizontalBox, VerticalBox} from "std-widgets.slint";
+
+export component MainMenu inherits HorizontalBox {
+    width: 20%;
+    VerticalBox {
+        Text {
+            text: "Menu";
+        }
+
+        Button {
+            text: "Artikli";
+        }
+        
+        Button {
+            text: "Klijenti";
+        }
+
+        Button {
+            text: "Racuni";
+        }
+    }
+}
+
+export component FileMenu inherits Rectangle {
+    height: 10px;
+    Text {
+        text: "File menu";
+    }
+}

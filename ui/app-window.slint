@@ -1,0 +1,14 @@
+import { Button, HorizontalBox } from "std-widgets.slint";
+import { MainMenu, FileMenu } from "main-menu.slint";
+import { MainApp } from "main-app.slint";
+
+export component AppWindow inherits Window {
+
+    GridLayout {
+      spacing: 10px; 
+        FileMenu { row: 0; col: 0;}
+        MainMenu { row: 1; col: 0;}
+        MainApp { row: 1; col: 1;}
+    }
+
+}
