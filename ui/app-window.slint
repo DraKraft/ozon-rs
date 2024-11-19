@@ -1,14 +1,27 @@
-import { Button, HorizontalBox } from "std-widgets.slint";
-import { MainMenu, FileMenu } from "main-menu.slint";
+
+// app-window.slint
+import { MainMenu } from "main-menu.slint";
 import { MainApp } from "main-app.slint";
 
 export component AppWindow inherits Window {
+    // Shared property for active page
+    in-out property <string> active_page: "articles";
 
     GridLayout {
-      spacing: 10px; 
-        FileMenu { row: 0; col: 0;}
-        MainMenu { row: 1; col: 0;}
-        MainApp { row: 1; col: 1;}
-    }
+        spacing: 10px;
 
+        // MainMenu
+        MainMenu {
+            width: 20%;
+            row: 0; col: 0;
+            menu_clicked(page) => { active_page = page; }
+        }
+
+        // MainApp
+        MainApp {
+            row: 0; col: 1;
+            active_page: active_page;
+        }
+    }
 }
+

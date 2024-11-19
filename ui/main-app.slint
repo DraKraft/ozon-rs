@@ -1,9 +1,31 @@
-import { Button, HorizontalBox, VerticalBox} from "std-widgets.slint";
 
-export component MainApp inherits HorizontalBox {
-    VerticalBox {
-        Text {
-            text: "Stuf ...";
+import { Articles } from "components/articles.slint";
+import { Bills } from "components/bills.slint";
+import { Customers } from "components/customers.slint";
+
+export component MainApp inherits Rectangle {
+    // Declare the property for the active page
+    in property <string> active_page: "articles";
+
+    // Dynamically show content based on active_page using visibility
+    Rectangle {
+        background: #F0F0F0;
+        padding: 10px;
+
+        // Articles Component
+        Articles {
+            visible: active_page == "articles";
+        }
+
+        // Bills Component
+        Bills {
+            visible: active_page == "bills";
+        }
+
+        // Customers Component
+        Customers {
+            visible: active_page == "customers";
         }
     }
 }
+

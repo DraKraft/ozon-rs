@@ -1,29 +1,35 @@
-import { Button, HorizontalBox, VerticalBox} from "std-widgets.slint";
 
-export component MainMenu inherits HorizontalBox {
-    width: 20%;
-    VerticalBox {
-        Text {
-            text: "Menu";
-        }
+// main-menu.slint
+import { Button, VerticalBox } from "std-widgets.slint";
 
-        Button {
-            text: "Artikli";
-        }
-        
-        Button {
-            text: "Klijenti";
-        }
+export component MainMenu inherits VerticalBox {
+    // Declare the callback
+    callback menu_clicked(string);
 
-        Button {
-            text: "Racuni";
-        }
+    spacing: 10px;
+
+    Button {
+        width: 90%;
+        height: 50px;
+        text: "Articles";
+        clicked => { menu_clicked("articles"); }
+    }
+
+    Button {
+        width: 90%;
+        height: 50px;
+
+        text: "Bills";
+        clicked => { menu_clicked("bills"); }
+    }
+
+    Button {
+        width: 90%;
+        height: 50px;
+
+        text: "Customers";
+        clicked => { menu_clicked("customers"); }
     }
 }
 
-export component FileMenu inherits Rectangle {
-    height: 10px;
-    Text {
-        text: "File menu";
-    }
-}
+
