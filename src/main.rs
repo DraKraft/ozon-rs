@@ -9,6 +9,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     let app = AppWindow::new()?;
     
     // Run Slint UI
+    // Handle the menu_clicked callback
+    app.on_menu_clicked(|page_name| {
+        println!("Menu clicked: {}", page_name);
+    });
     app.run()?;
 
     Ok(())

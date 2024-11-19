@@ -4,25 +4,22 @@ import { Bills } from "components/bills.slint";
 import { Customers } from "components/customers.slint";
 
 export component MainApp inherits Rectangle {
-    // Declare the property for the active page
+    // Declare the active_page property
     in property <string> active_page: "articles";
 
-    // Dynamically show content based on active_page using visibility
     Rectangle {
         background: #F0F0F0;
         padding: 10px;
 
-        // Articles Component
+        // Dynamically show content based on active_page
         Articles {
             visible: active_page == "articles";
         }
 
-        // Bills Component
         Bills {
             visible: active_page == "bills";
         }
 
-        // Customers Component
         Customers {
             visible: active_page == "customers";
         }

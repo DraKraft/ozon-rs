@@ -6,7 +6,8 @@ import { MainApp } from "main-app.slint";
 export component AppWindow inherits Window {
     // Shared property for active page
     in-out property <string> active_page: "articles";
-
+    callback menu_clicked(string);
+    
     GridLayout {
         spacing: 10px;
 
@@ -14,7 +15,10 @@ export component AppWindow inherits Window {
         MainMenu {
             width: 20%;
             row: 0; col: 0;
-            menu_clicked(page) => { active_page = page; }
+            menu_clicked(page_name) => { 
+                root.menu_clicked(page_name);
+                active_page = page_name;
+                }
         }
 
         // MainApp
