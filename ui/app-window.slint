@@ -2,6 +2,12 @@
 // app-window.slint
 import { MainMenu } from "main-menu.slint";
 import { MainApp } from "main-app.slint";
+import { Customer } from "components/customers.slint";
+
+export global CustomersPage {
+    in-out property <[Customer]> customers: [];
+}
+
 
 export component AppWindow inherits Window {
     // Shared property for active page

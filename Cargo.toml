@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 slint = "1.8.0"
+rusqlite = {version = "*", features = ["bundled"]}
 
 [build-dependencies]
 slint-build = "1.8.0"

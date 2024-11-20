@@ -1,0 +1,52 @@
+
+import { VerticalBox, HorizontalBox, ListView } from "std-widgets.slint";
+
+export struct Customer {
+    uid: string,
+    name: string,
+    phone: string,
+    address: string,
+    address_additional: string,
+    active: bool,
+}
+
+
+export component Customers {
+    in property <[Customer]> customers: [];
+
+    VerticalBox {
+        spacing: 10px;
+
+        Text {
+            text: "Customers List";
+            font-size: 20px;
+        }
+
+        ListView {
+            for customer in customers: HorizontalBox {
+                spacing: 20px;
+
+                Text {
+                    text: customer.uid;
+                    font-size: 16px;
+                }
+
+                Text {
+                    text: customer.name;
+                    font-size: 16px;
+                }
+
+                Text {
+                    text: customer.phone;
+                    font-size: 16px;
+                }
+
+                Text {
+                    text: customer.address;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
