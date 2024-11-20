@@ -1,5 +1,4 @@
 
-// app-window.slint
 import { MainMenu } from "main-menu.slint";
 import { MainApp } from "main-app.slint";
 import { Customer } from "components/customers.slint";
@@ -8,10 +7,11 @@ export global CustomersPage {
     in-out property <[Customer]> customers: [];
 }
 
-
 export component AppWindow inherits Window {
     // Shared property for active page
     in-out property <string> active_page: "articles";
+    in-out property <[Customer]> customers: []; // Expose customers for MainApp
+
     callback menu_clicked(string);
     
     GridLayout {
@@ -24,14 +24,15 @@ export component AppWindow inherits Window {
             menu_clicked(page_name) => { 
                 root.menu_clicked(page_name);
                 active_page = page_name;
-                }
+            }
         }
 
         // MainApp
         MainApp {
+            height: 100%;
             row: 0; col: 1;
             active_page: active_page;
+            customers: root.customers; // Pass customers to MainApp
         }
     }
 }
-

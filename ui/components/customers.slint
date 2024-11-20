@@ -10,9 +10,9 @@ export struct Customer {
     active: bool,
 }
 
-
 export component Customers {
-    in property <[Customer]> customers: [];
+    in-out property <[Customer]> customers: [];
+    in-out property <string> filter: ""; // Search query property
 
     VerticalBox {
         spacing: 10px;
@@ -22,28 +22,56 @@ export component Customers {
             font-size: 20px;
         }
 
+        // Search Bar
+        HorizontalBox {
+            Text {
+                text: "Search: "; 
+            }
+            TextInput {
+                text: filter; // Bind the text input to the filter property
+                width: 100%;
+            }
+        }
+        // Table Header
+        HorizontalBox {
+            spacing: 10px;
+
+            Text { text: "UID"; font-size: 16px; width: 50px; }
+            Text { text: "Name"; font-size: 16px; width: 150px; }
+            Text { text: "Phone"; font-size: 16px; width: 100px; }
+            Text { text: "Address"; font-size: 16px; width: 200px; }
+            Text { text: "Active"; font-size: 16px; width: 50px; }
+        }
+
+        // Table Rows
         ListView {
             for customer in customers: HorizontalBox {
-                spacing: 20px;
+                spacing: 10px;
 
-                Text {
-                    text: customer.uid;
-                    font-size: 16px;
+                Rectangle {
+                    width: 50px;
+                    height: 30px;
+                    Text { text: customer.uid; font-size: 14px; vertical-alignment: center; }
                 }
-
-                Text {
-                    text: customer.name;
-                    font-size: 16px;
+                Rectangle {
+                    width: 150px;
+                    height: 30px;
+                    Text { text: customer.name; font-size: 14px; vertical-alignment: center; }
                 }
-
-                Text {
-                    text: customer.phone;
-                    font-size: 16px;
+                Rectangle {
+                    width: 100px;
+                    height: 30px;
+                    Text { text: customer.phone; font-size: 14px; vertical-alignment: center; }
                 }
-
-                Text {
-                    text: customer.address;
-                    font-size: 16px;
+                Rectangle {
+                    width: 200px;
+                    height: 30px;
+                    Text { text: customer.address; font-size: 14px; vertical-alignment: center; }
+                }
+                Rectangle {
+                    width: 50px;
+                    height: 30px;
+                    Text { text: customer.active ? "Yes" : "No"; font-size: 14px; vertical-alignment: center; }
                 }
             }
         }

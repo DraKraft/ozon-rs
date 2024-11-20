@@ -1,15 +1,20 @@
 
 import { Articles } from "components/articles.slint";
 import { Bills } from "components/bills.slint";
-import { Customers } from "components/customers.slint";
+import { Customers, Customer } from "components/customers.slint";
 
 export component MainApp inherits Rectangle {
     // Declare the active_page property
     in property <string> active_page: "articles";
+    in property <[Customer]> customers: []; // Accept customers data
+    in-out property <string> filter: ""; // Declare the filter property
 
+    callback filter_changed(string); // Notify Rust when filter changes
+    callback menu_clicked(string);
     Rectangle {
         background: #F0F0F0;
         padding: 10px;
+        height: 100%;
 
         // Dynamically show content based on active_page
         Articles {
@@ -21,8 +26,10 @@ export component MainApp inherits Rectangle {
         }
 
         Customers {
+            height: 100%;
             visible: active_page == "customers";
+            customers: root.customers; // Bind the customers property
+            filter: root.filter;
         }
     }
 }
-
