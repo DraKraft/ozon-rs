@@ -1,6 +1,6 @@
 [package]
-name = "slint-rust-template"
-version = "0.1.0"
+name = "ozon-rs"
+version = "0.0.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 slint = "1.8.0"
 rusqlite = {version = "*", features = ["bundled"]}
+clap = { version = "4.0", features = ["derive"] }  # Optional if you want advanced CLI functionality
 
 [build-dependencies]
 slint-build = "1.8.0"

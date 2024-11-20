@@ -1,7 +1,7 @@
 use rusqlite::{Connection, Result};
 
 #[derive(Debug, Clone)]
-pub struct R_Customer {
+pub struct RCustomer {
     pub uid: String,
     pub name: String,
     pub phone: String,
@@ -10,13 +10,13 @@ pub struct R_Customer {
     pub active: bool,
 }
 
-impl R_Customer {
-    pub fn get_all(conn: &Connection) -> Result<Vec<R_Customer>> {
+impl RCustomer {
+    pub fn get_all(conn: &Connection) -> Result<Vec<RCustomer>> {
         let mut stmt = conn.prepare(
             "SELECT uid, name, phone, address, address_additional, active FROM clients_client",
         )?;
         let customer_iter = stmt.query_map([], |row| {
-            Ok(R_Customer {
+            Ok(RCustomer {
                 uid: row.get(0)?,
                 name: row.get(1)?,
                 phone: row.get(2)?,
@@ -33,10 +33,10 @@ impl R_Customer {
         Ok(customers)
     }
 
-    pub fn get_limited(conn: &Connection, limit: usize) -> Result<Vec<R_Customer>> {
+    pub fn get_limited(conn: &Connection, limit: usize) -> Result<Vec<RCustomer>> {
         let mut stmt = conn.prepare("SELECT uid, name, phone, address, address_additional, active FROM clients_client LIMIT ?")?;
         let customers = stmt.query_map([limit], |row| {
-            Ok(R_Customer {
+            Ok(RCustomer {
                 uid: row.get(0)?,
                 name: row.get(1)?,
                 phone: row.get(2)?,
@@ -45,7 +45,7 @@ impl R_Customer {
                 active: row.get(5)?,
             })
         })?
-        .collect::<Result<Vec<R_Customer>, _>>()?;
+        .collect::<Result<Vec<RCustomer>, _>>()?;
 
         Ok(customers)
     }
