@@ -4,6 +4,7 @@
 use std::env;
 use std::error::Error;
 mod cli;
+mod controllers;
 use clap::{Arg, Command, Parser};
 use rusqlite::Connection;
 
