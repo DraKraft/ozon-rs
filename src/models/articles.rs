@@ -2,7 +2,6 @@ use rusqlite::{Connection, Result};
 
 // articles.rs 
 //
-use crate::models::customers::RCustomer;
 
 pub struct RArticle {
     pub description: String,

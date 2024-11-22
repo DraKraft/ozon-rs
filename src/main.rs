@@ -5,13 +5,11 @@ use std::env;
 use std::error::Error;
 mod cli;
 mod controllers;
-use clap::{Arg, Command, Parser};
+use clap::Parser;
 use rusqlite::Connection;
 
 mod models;
 use models::customers::RCustomer;
-use models::articles::RArticle;
-use cli::Args;
 
 slint::include_modules!();
 
@@ -20,11 +18,11 @@ fn main() -> Result<(), Box<dyn Error>> {
     //
     if env::args().len() <= 1 {
         println!("No arguments provided. Running UI.");
-        run_gui();
+        run_gui()?;
         ( )
     } else {
         let args = cli::Args::parse(); 
-        cli::process_args(&args);
+        cli::process_args(&args)?;
     }
     Ok(())
 }
@@ -59,11 +57,3 @@ fn run_gui() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-fn run_cli() {
-    println!("Running in CLI mode...");
-    // Your CLI logic can go here
-}
-
-fn get_articles() {
-    println!("Printing first 5 articles");
-}

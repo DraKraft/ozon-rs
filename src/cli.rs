@@ -11,7 +11,6 @@ pub struct Args {
     cmd: Commands
 }
 
-use crate::models::customers::RCustomer;
 
 #[derive(Subcommand, Debug, Clone)]
 enum Commands {
